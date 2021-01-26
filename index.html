@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Engine test</title>
+  </head>
+  <body>
+    <style>
+      div {
+        font-family: "Roboto Mono", monospace;
+      }
+      button {
+        width: 150px;
+        height: 100px;
+      }
+    </style>
+    <div id="a">
+      primitive 3d engine
+    </div>
+    <div id="b"></div>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <div>
+      <button onclick="engine.camera.x++">
+        X+</button
+      ><button onclick="engine.camera.x--">
+        X-
+      </button>
+      <button onclick="engine.camera.y++">
+        Y+</button
+      ><button onclick="engine.camera.y--">
+        Y-
+      </button>
+      <button onclick="engine.camera.z++">
+        Z+</button
+      ><button onclick="engine.camera.z--">
+        Z-
+      </button>
+      <button onclick="r()">
+        record
+      </button>
+    </div>
+  </body>
+  <script defer src="js/engine.js"></script>
+  <script defer src="js/script.js"></script>
+</html>
