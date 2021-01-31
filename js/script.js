@@ -8,14 +8,22 @@ let x = 0.004 * Math.PI,
 
 let loadMesh = async url => {
   let m = await fetch(url);
-  let mesh = (await m.json()).mesh;
-  document.getElementById("a").innerText = JSON.stringify(mesh);
+  let m2 = await m.text();
+  let m3 = m2.split("\n\n");
+
   let newMesh = [];
-  for (let i = 0; i < mesh.length; i++) {
+  for (let i = 0; i < m3.length; i++) {
+    let m4 = m3[i].split("\n");
+    let m5 = [
+      m4[0].split(" ").map(Number),
+      m4[1].split(" ").map(Number),
+      m4[2].split(" ").map(Number)
+    ];
+    log(m5.toString());
     let tri = new Triangle([
-      new Vec3d(mesh[i][0][0], mesh[i][0][1], mesh[i][0][2]),
-      new Vec3d(mesh[i][1][0], mesh[i][1][1], mesh[i][1][2]),
-      new Vec3d(mesh[i][2][0], mesh[i][2][1], mesh[i][2][2])
+      new Vec3d(m5[0][0], m5[0][1], m5[0][2]),
+      new Vec3d(m5[1][0], m5[1][1], m5[1][2]),
+      new Vec3d(m5[2][0], m5[2][1], m5[2][2])
     ]);
     newMesh[i] = tri;
   }
@@ -54,7 +62,7 @@ function record(canvas, time) {
 async function main() {
   engine.context.strokeStyle = "#FFFFFF";
   engine.context.lineCap = "round";
-  m = await loadMesh("./mesh/cube.json");
+  m = await loadMesh("./mesh/cube.mesh");
 
   setInterval(loop, 1000 / frameRate);
   //let url = await record(canvas, 15000);
@@ -66,16 +74,15 @@ async function r() {
   document.getElementById("b").innerHTML = `<a href="${url}">eee</a>`;
 }
 
-
-
 function loop() {
-  m.rotateX(x)
+  //m.rotateX(x)
   //  .rotateY(y)
   //  .rotateZ(z);
   //x += (Math.random() - 0.5) / 500;
   //y += (Math.random() - 0.5) / 500;
   //z += (Math.random() - 0.5) / 500;
-
+  frames++;
+  log(frames);
   engine.background(127, 0, 0);
   engine.drawMesh(m);
 }
