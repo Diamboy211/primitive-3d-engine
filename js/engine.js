@@ -113,7 +113,7 @@ class Engine {
           normal.z * (triTrans.vertices[0].z - this.camera.z) >
         0;
       if (disp) {
-        let lum = Math.floor(255*(normal.dot(this.lightDirection)**0.4545));
+        let lum = Math.floor(255*normal.dot(this.lightDirection));
         log(lum)
         triProj.vertices[0].x += 1;
         triProj.vertices[0].y += 1;
